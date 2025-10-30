@@ -1,3 +1,4 @@
+// src/controllers/aiController.js
 import axios from "axios";
 
 export const askIngrida = async (req, res) => {
@@ -18,22 +19,36 @@ Your task:
 - Reply naturally in 2–4 sentences.
 `;
 
-    // Call apifreellm.com
+    // --- ✅ OpenRouter API call ---
     const aiResponse = await axios.post(
-      "https://apifreellm.com/api/chat",
-      { message: prompt },
-      { headers: { "Content-Type": "application/json" }, timeout: 20000 }
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        model: "mistralai/mistral-7b-instruct", // fast, free, good quality
+        messages: [{ role: "user", content: prompt }],
+      },
+      {
+        headers: {
+          "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`,
+          "HTTP-Referer": "https://kitchenly.onrender.com",
+          "X-Title": "KitchenLy Ingrida AI",
+          "Content-Type": "application/json",
+        },
+        timeout: 20000,
+      }
     );
 
-    if (aiResponse.data?.status === "success" && aiResponse.data?.response) {
-      res.json({ reply: aiResponse.data.response.trim() });
-    } else {
-      console.error("LLM API unexpected:", aiResponse.data);
-      res.status(500).json({ message: "Ingrida is having a kitchen crisis! (LLM bad response)" });
-    }
+    const reply =
+      aiResponse.data?.choices?.[0]?.message?.content?.trim() ||
+      "Ingrida couldn’t think of anything right now!";
 
+    res.json({ reply });
   } catch (error) {
     console.error("Ingrida AI error:", error.message);
-    res.status(500).json({ message: "Ingrida is having a kitchen crisis! (LLM error)" });
+    if (error.response) {
+      console.error("OpenRouter response:", error.response.data);
+    }
+    res.status(500).json({
+      message: "Ingrida is having a kitchen crisis! (LLM error)",
+    });
   }
 };
