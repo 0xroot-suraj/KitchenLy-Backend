@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KitchenLy Backend</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
+  <meta name="theme-color" content="#ff914d">
+  <meta name="description" content="KitchenLy Backend — Powered by Ingrida AI">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff7e6, #ffe0b2);
+      overflow: hidden;
+      position: relative;
+      color: #5a3e1b;
+      animation: bgMove 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgMove {
+      from { background-position: 0% 50%; }
+      to { background-position: 100% 50%; }
+    }
+
+    .steam {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      animation: rise 6s ease-in-out infinite;
+      opacity: 0.8;
+    }
+    .steam:nth-child(1) { left: 45%; animation-delay: 0s; }
+    .steam:nth-child(2) { left: 50%; animation-delay: 1s; }
+    .steam:nth-child(3) { left: 55%; animation-delay: 2s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(0.8); opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+    }
+
+    .card {
+      background: #fffaf3;
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 600px;
+      animation: fadeIn 2s ease;
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff914d, #ffce56);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .ai-powered {
+      margin-top: -0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #ff914d, #ffce56, #ff914d);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: shimmer 4s infinite linear;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .icon {
+      font-size: 3rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    h1 {
+      margin: 0.3rem 0;
+      font-size: 1.7rem;
+      font-weight: 600;
+    }
+    p {
+      margin-top: 0.8rem;
+      font-size: 1.1rem;
+      color: #6b4b25;
+    }
+
+    .btn {
+      margin-top: 1.8rem;
+      background: linear-gradient(90deg, #ff914d, #ffce56);
+      border: none;
+      border-radius: 50px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255,145,77,0.3);
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      animation: pulseGlow 3.5s infinite ease-in-out;
+    }
+
+    .btn span.arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(255,145,77,0.3); }
+      50% { box-shadow: 0 0 20px rgba(255,145,77,0.6); }
+    }
+
+    .btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(255,145,77,0.6);
+    }
+
+    .btn:hover span.arrow {
+      transform: translateX(4px) translateY(-2px);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9rem;
+      color: #6b4b25;
+      opacity: 0.7;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="steam"></div>
+  <div class="steam"></div>
+  <div class="steam"></div>
+
+  <div class="card">
+    <div class="icon">🥘</div>
+    <div class="logo">KitchenLy</div>
+    <p class="ai-powered">Powered by Ingrida AI</p>
+    <h1>Your smart pantry assistant is online 👩‍🍳</h1>
+    <p>Seamlessly blending ingredients, recipes, and AI magic.</p>
+
+    <button class="btn" onclick="window.location.href='/docs'">
+      View API Docs <span class="arrow">↗</span>
+    </button>
+  </div>
+
+  <footer>Made with ❤️ by Shakti Suraj</footer>
+</body>
+</html>

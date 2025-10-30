@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KitchenLy API Docs</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff914d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#ff914d">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #fff8ef, #ffe7cb);
+      background-attachment: fixed;
+      color: #3d2b1f;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1.2rem;
+      color: #3d2b1f;
+      position: relative;
+    }
+
+    /* New gradient box wrapper */
+    .header-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, #ff914d, #ffc371);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 6px 20px rgba(255, 145, 77, 0.25);
+      color: white;
+      animation: floatBox 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBox {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 2.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+
+    .logo svg {
+      width: 36px;
+      height: 36px;
+      stroke: #fff;
+    }
+
+    h1 {
+      margin-top: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #fff;
+      animation: taglinePulse 5s ease-in-out infinite;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes taglinePulse {
+      0%, 100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 0.75;
+        transform: translateY(-3px);
+      }
+    }
+
+    .accordion {
+      flex: 1;
+      max-width: 800px;
+      margin: 2.5rem auto;
+      width: 100%;
+    }
+
+    .accordion-item {
+      background: #fffaf3;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.4rem;
+      cursor: pointer;
+      color: #ff914d;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: background 0.3s ease;
+    }
+
+    .accordion-header:hover {
+      background-color: #fff3e2;
+    }
+
+    .accordion-header span {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .accordion-header svg {
+      stroke: #ff914d;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-item.active {
+      animation: bounceIn 0.4s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.97); opacity: 0.7; }
+      60% { transform: scale(1.03); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .accordion-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      padding: 0 1.4rem;
+    }
+
+    .accordion-item.active .accordion-content {
+      max-height: 400px;
+      opacity: 1;
+      padding-bottom: 1rem;
+    }
+
+    .accordion-item.active .accordion-header .arrow {
+      transform: rotate(180deg);
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    code {
+      background: #fff0d6;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+
+    pre {
+      background: #fff3df;
+      padding: 0.8rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b4b25;
+      padding: 2rem 0 1.5rem;
+      margin-top: auto;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff914d, #ffc371);
+      color: #fff;
+      padding: 0.6rem 1.3rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 12px rgba(255,145,77,0.3);
+    }
+
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(255,145,77,0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-box">
+      <div class="logo">
+        🥘
+        KitchenLy API Docs
+      </div>
+      <h1>Powered by Ingrida AI</h1>
+    </div>
+  </header>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <span><i data-lucide="key-round"></i> Authentication</span>
+        <i class="arrow" data-lucide="chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><code>POST /api/auth/register</code> — Register a new user.</li>
+          <li><code>POST /api/auth/login</code> — Login and receive a JWT token.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <span><i data-lucide="box"></i> Pantry Management</span>
+        <i class="arrow" data-lucide="chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><code>GET /api/pantry</code> — Get all pantry items (requires token).</li>
+          <li><code>POST /api/pantry/add</code> — Add an ingredient.</li>
+          <li><code>DELETE /api/pantry/:id</code> — Remove an ingredient.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <span><i data-lucide="shopping-basket"></i> Shopping List</span>
+        <i class="arrow" data-lucide="chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><code>GET /api/shopping</code> — Retrieve your shopping list.</li>
+          <li><code>POST /api/shopping/add</code> — Add an item to your shopping list.</li>
+          <li><code>DELETE /api/shopping/:id</code> — Remove an item from your list.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <span><i data-lucide="utensils-crossed"></i> Recipe Finder (AI Enhanced)</span>
+        <i class="arrow" data-lucide="chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><code>POST /api/recipes/find</code> — Provide ingredients to get 10 recipe suggestions and 3 AI substitution tips.</li>
+          <li>Headers: <code>Authorization: Bearer &lt;token&gt;</code></li>
+          <li>Body example:</li>
+        </ul>
+        <pre><code>{
+  "ingredients": ["egg", "milk", "bread"]
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <span><i data-lucide="bot"></i> Ingrida AI Assistant</span>
+        <i class="arrow" data-lucide="chevron-down"></i>
+      </div>
+      <div class="accordion-content">
+        <ul>
+          <li><code>POST /api/ai/ask</code> — Send a message and receive Ingrida’s AI-powered response.</li>
+          <li>Body example:</li>
+        </ul>
+        <pre><code>{
+  "message": "What can I make for breakfast?",
+  "pantryItems": ["egg", "spinach", "cheese"]
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/" class="back-btn">← Back to KitchenLy</a><br><br>
+    Made with ❤️ by Shakti Suraj
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const items = document.querySelectorAll('.accordion-item');
+    items.forEach(item => {
+      item.querySelector('.accordion-header').addEventListener('click', () => {
+        items.forEach(i => i !== item && i.classList.remove('active'));
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
