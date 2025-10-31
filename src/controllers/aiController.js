@@ -1,4 +1,3 @@
-// src/controllers/aiController.js
 import axios from "axios";
 
 export const askIngrida = async (req, res) => {
@@ -19,11 +18,10 @@ Your task:
 - Reply naturally in 2–4 sentences.
 `;
 
-    // --- ✅ OpenRouter API call ---
     const aiResponse = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "mistralai/mistral-7b-instruct", // fast, free, good quality
+        model: "mistralai/mistral-7b-instruct",
         messages: [{ role: "user", content: prompt }],
       },
       {

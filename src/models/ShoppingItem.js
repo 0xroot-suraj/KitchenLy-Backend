@@ -8,7 +8,7 @@ const shoppingItemSchema = new mongoose.Schema({
   },
   name: { type: String, required: true },
   quantity: { type: String, default: "1" },
-  addedFromRecipe: { type: String }, // optional: store recipe name
+  addedFromRecipe: { type: String },
   addedAt: { type: Date, default: Date.now },
   purchased: { type: Boolean, default: false },
 });

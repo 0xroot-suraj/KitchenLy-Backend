@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KitchenLy API Status</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff914d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpolyline points='2 17 12 22 22 17'/%3E%3Cpolyline points='2 12 12 17 22 12'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#ff914d">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #fff7e6, #ffe0b2);
+      background-attachment: fixed;
+      color: #3d2b1f;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0 1.2rem;
+      color: #3d2b1f;
+    }
+
+    .header-box {
+      background: linear-gradient(90deg, #ff914d, #ffc371);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 6px 20px rgba(255, 145, 77, 0.25);
+      color: white;
+      animation: floatBox 5s ease-in-out infinite;
+    }
+
+    @keyframes floatBox {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 2.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+    }
+
+    .status-card {
+      background: #fffaf3;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 2rem 2.5rem;
+      text-align: center;
+      width: 100%;
+      margin: 1.5rem 0 1.25rem;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .heading {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #ff914d, #ffce56);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .status-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .status-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .bar {
+      width: 6px;
+      height: 24px;
+      border-radius: 3px;
+      background: #ccc;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scaleY(0.9); }
+      50% { opacity: 1; transform: scaleY(1.3); }
+    }
+
+    .bar.active { background: linear-gradient(180deg, #00e676, #00c853); animation-delay: calc(var(--i) * 0.05s); }
+    .bar.warning { background: linear-gradient(180deg, #ffb24d, #ff914d); animation-delay: calc(var(--i) * 0.05s); }
+    .bar.inactive { background: #ff1744; animation: none; }
+
+    .info-line { font-size: 1rem; color: #6b4b25; margin: 6px 0; }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 1rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff914d, #ffc371);
+      color: #fff;
+      padding: 0.6rem 1.3rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 12px rgba(255,145,77,0.3);
+    }
+
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(255,145,77,0.5); }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b4b25;
+      padding: 1rem 0 2rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 520px) {
+      .logo { font-size: 1.7rem; }
+      .status-card { padding: 1.5rem; }
+      .heading { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-box">
+        <div class="logo">🥘 KitchenLy API Status</div>
+        <h1>Powered by Ingrida AI</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="status-card" role="status" aria-live="polite">
+      <div class="heading">System Health</div>
+      <p class="info-line">Status: <span id="status" class="status-label">Checking...</span></p>
+      <p class="info-line">Response Time: <strong id="latency">--</strong> ms</p>
+      <p class="info-line">Database: <strong id="db">--</strong></p>
+      <p class="info-line">Uptime: <span id="uptime">--</span></p>
+      <div class="status-bar" id="bars" aria-hidden="true"></div>
+      <p class="info-line" id="time">Last checked: --</p>
+    </div>
+
+    <div class="btn-group">
+      <a href="/" class="back-btn">⬅ Back to KitchenLy</a>
+      <a href="/docs" class="back-btn">View API Docs ↗</a>
+    </div>
+  </main>
+
+  <footer>Made with ❤️ by Shakti Suraj</footer>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const latencyEl = document.getElementById("latency");
+    const dbEl = document.getElementById("db");
+    const uptimeEl = document.getElementById("uptime");
+    const timeEl = document.getElementById("time");
+    const bars = document.getElementById("bars");
+
+    let uptimeSeconds = 0;
+    let tickInterval = null;
+
+    const fmtTime = s => {
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      return `${h}h ${m}m ${sec}s`;
+    };
+
+    const renderBars = (mode) => {
+      bars.innerHTML = "";
+      for (let i = 0; i < 60; i++) {
+        const bar = document.createElement("div");
+        bar.className = "bar " + mode;
+        bar.style.setProperty("--i", i);
+        bars.appendChild(bar);
+      }
+    };
+
+    const startTicker = () => {
+      if (tickInterval) clearInterval(tickInterval);
+      tickInterval = setInterval(() => {
+        uptimeSeconds++;
+        uptimeEl.textContent = fmtTime(uptimeSeconds);
+      }, 1000);
+    };
+
+    async function checkAPI() {
+      const start = Date.now();
+      try {
+        const res = await fetch("/api/ping", { cache: "no-store" });
+        const latency = Date.now() - start;
+        latencyEl.textContent = latency;
+        timeEl.textContent = "Last checked: " + new Date().toLocaleString();
+
+        if (!res.ok) throw new Error("Server error");
+
+        const data = await res.json();
+        uptimeSeconds = parseInt(data.uptime) || 0;
+        uptimeEl.textContent = fmtTime(uptimeSeconds);
+
+        dbEl.textContent = data.dbConnected ? "✅ Connected" : "❌ Disconnected";
+        dbEl.style.color = data.dbConnected ? "#00c853" : "#d50000";
+
+        statusEl.textContent = "Operational ✅";
+        statusEl.style.color = "#00c853";
+
+        renderBars(latency > 1000 ? "inactive" : latency > 500 ? "warning" : "active");
+        startTicker();
+
+      } catch (e) {
+        statusEl.textContent = "Offline ❌";
+        statusEl.style.color = "#d50000";
+        dbEl.textContent = "--";
+        renderBars("inactive");
+        if (tickInterval) clearInterval(tickInterval);
+      }
+    }
+
+    checkAPI();
+    setInterval(checkAPI, 10000);
+  </script>
+</body>
+</html>
