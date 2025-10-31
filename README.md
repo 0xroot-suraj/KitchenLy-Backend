@@ -1,9 +1,19 @@
-# 🍳 KitchenLy Server
-
-Backend service for **KitchenLy**, a smart kitchen assistant that helps users manage pantry items, generate recipes, and track shopping lists — all powered by AI.
+<div align="center">
+  <h1>🍳 KitchenLy Server</h1>
+  <p>
+    Backend service for <strong>KitchenLy</strong>, a smart kitchen assistant that helps users manage <br>pantry items, generate recipes, and track shopping lists — all powered by AI.
+  </p>
+</div>
 
 ---
 
+<div align="center">
+  
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Live-success.svg)](https://kitchenly.onrender.com/status)
+[![Docs](https://img.shields.io/badge/API%20Docs-View-blue.svg)](https://kitchenly.onrender.com/docs)
+
+</div>
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" />
   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
@@ -13,6 +23,10 @@ Backend service for **KitchenLy**, a smart kitchen assistant that helps users ma
 </p>
 
 ---
+
+<p align="center">
+  <img src="https://kitchenly.onrender.com/kitchenly.png" width="100%" alt="KitchenLy Banner" />
+</p>
 
 ## 🌐 Live API
 
@@ -99,7 +113,7 @@ This project is licensed under the [MIT License](LICENSE) - free to use and modi
 
 ## 🧑‍💻 Author
 
-**Shakti Suraj**(@0xroot-suraj)
+**Shakti Suraj** (@0xroot-suraj)
 > Made with dedication and creativity for the KitchenLy project.
 
 ---
